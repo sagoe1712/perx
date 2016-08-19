@@ -102,9 +102,67 @@
 
 <script>
 $(document).ready(function(e) {
-    
+//$(document).ready(function(e) {
+var storedvalue = localStorage.getItem('text');
+var storedvalue2 = localStorage.getItem('password');
+if(storedvalue){
+	//document.getElementById('username').value = storedvalue;
+	//document.getElementById('password').value = storedvalue2;
+	var username = storedvalue;
+	var password = storedvalue2;
+//alert("say GO");
+$.ajax({
+			type:"POST",
+			url:"http://rewardsboxnigeria.com/perx/api/loginapi.php",
+			data:{username:username, password:password},
+			dataType:"json",
+			success: function(msg){
+				if (msg.sucess == false) {
+											alert("There was an error submitting the form. Please try again.");
+											} else {
+												if (msg.status ==1001){
+													//alert(msg.Total_unread_notifications);
+													//var noteno =msg.Total_unread_notifications
+													localStorage.setItem('memberid', msg.Membership_id);
+													localStorage.setItem('firstname', msg.First_name);
+													localStorage.setItem('notify', msg.Total_unread_notifications);
+													localStorage.setItem('bal', msg.Current_balance);
+												window.location.replace('main.html')
+												}
+												
+												else if (msg.status ==2005){
+												alert("Invaid Username or Password");
+												localStorage.removeItem('text');
+												localStorage.removeItem('password');
+												localStorage.removeItem('memberid');
+												localStorage.removeItem('firstname');
+												localStorage.removeItem('notify');
+												localStorage.removeItem('bal');
+												
+												}
+											
+												else {
+												alert("Invalid Credentials");
+												localStorage.removeItem('text');
+												localStorage.removeItem('password');
+												localStorage.removeItem('memberid');
+												localStorage.removeItem('firstname');
+												localStorage.removeItem('notify');
+												localStorage.removeItem('bal');
+												}	
+										}
+	}
+		});
+	//	return false;	
+}
+	
+	else {
+												//window.location.replace('login.html');
+	}
+		
+		
 //});
-	  $('#login').click(function(){
+	$('#login').click(function(){
 	var username = $('#username').val();
 	var	password = $('#password').val();
 	if (username == "")
@@ -115,36 +173,80 @@ $(document).ready(function(e) {
 	else if (password == "")
 	{
 		alert("Enter Your password");
-	
 	return false;
 	}
+ 
+  
 	else{
-	//	alert("say GO");
+		alert("say GOs");
 		$.ajax({
 			type:"POST",
 			url:"http://rewardsboxnigeria.com/perx/api/loginapi.php",
 			data:{username:username, password:password},
 			dataType:"json",
 			success: function(msg){
-				if (msg.sucess == false) {
+				
+				if (msg.success == false) {
 											alert("There was an error submitting the form. Please try again.");
 											} else {
 												if (msg.status ==1001){
+												 var usernamevalue = document.getElementById('username').value;
+  													localStorage.setItem('text', usernamevalue);
+ 												 var passwordvalue = document.getElementById('password').value;
+				  									localStorage.setItem('password', passwordvalue);
 												window.location.replace('main.html');
 												}
-												//else if (msg.status ==1002){
-													//alert(msg.memberid);
-												//	window.location.replace('changepassword.html', function() {
-												//	$('#hmemberid').val(msg.memberid);
-												//	});
-												//}
+											
 												else {
-												
 												alert(msg.status);
-													
-															
 			$('#username').val('');
 			$('#password').val('');
+			}								}
+	}
+		});
+		return false;
+	}
+});
+$('#forgotsubmit').click(function(){
+	var email = $('#email').val();
+	if (email == "")
+	{
+		alert("Enter Your registerd email address");
+		return false;
+	}
+	 
+  
+	else{
+		alert("say GO");
+		
+		$.ajax({
+			type:"POST",
+			url:"http://rewardsboxnigeria.com/perx/api/forgotapi.php",
+			data:{email:email},
+			dataType:"json",
+			success: function(msg){
+				
+				if (msg.success == false) {
+											alert("There was an error submitting the form. Please try again.");
+											} else {
+												if (msg.status ==1001){
+												// alert("nice");
+										
+												alert("Password Reset Sucessful. Check your email")
+												$('#email').val('');
+												}
+												else if (msg.status ==2008){
+													alert("Enter Email address");
+												
+												}
+												else if (msg.status ==2009){
+													alert("Invaid email address");
+												
+												}
+												else {
+												alert("Application Error");
+			
+			
 			}								}
 	}
 		});
