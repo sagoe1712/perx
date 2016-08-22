@@ -1836,6 +1836,6 @@ text-align:left;
     transform: translate(-50%, -50%);
 }
 
-.checkout-page #pages_maincontent #showcheckout .txtquantity{
-	max-width:10%;
+.cart-item .cart-item-info .div-change .txtquantity{
+	max-width:50px;
 }
