@@ -337,7 +337,7 @@ $('#showauction').load('blank.html', function() {
                                         Highest_bid_text = "Not Bidded for Auction. Bid now to become first bidder.";
                                     }
                                     
-                                    tran='<div class="auction-item"><div class="bid-pic"><img src="'+value.Prize_image+'"/></div><div class="bid-item-desc"><h3>'+value.Auction_name+'</h3><p class="bid-timer">End Date:'+value.End_date +' '+ value.End_time +'  </p></div><div class="col-lg-4"><h4 class="winner-note">'+Highest_bid_text+'</h4><p>Minimum Amount To Bid</p><h3 id="'+value.Auction_id+'" class="minbid">'+ (+value.Min_bid_value + +value.Min_increment) +'</h3><input type="text" id="'+value.Auction_id+'" class="form_input"/><br/><input type="submit" name="submit" class="form_submit bidbtn" id="'+value.Auction_id+'" value="BID" /></div></div>';
+                                    tran='<div class="auction-item"><div class="bid-pic"><img src="'+value.Prize_image+'" class="auction-item-pic"/></div><div class="bid-item-desc"><h3>'+value.Auction_name+'</h3><p class="bid-timer">End Date:'+value.End_date +' '+ value.End_time +'  </p></div><div class="col-lg-4"><h4 class="winner-note">'+Highest_bid_text+'</h4><p>Minimum Amount To Bid</p><h3 id="'+value.Auction_id+'" class="minbid">'+ (+value.Min_bid_value + +value.Min_increment) +'</h3><input type="text" id="'+value.Auction_id+'" class="form_input"/><br/><input type="submit" name="submit" class="form_submit bidbtn" id="'+value.Auction_id+'" value="BID" /></div></div>';
 							result = result + tran; 
 							tran ="";	
                                 //}										

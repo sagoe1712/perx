@@ -1758,8 +1758,12 @@ div.not-panel.show {
 	margin-bottom:20px;
 }
 
-.catalogue-item img{
+.catalogue-item img, .auction-item img, .bid-pic img{
 	margin:auto;
+}
+
+.auction-item .bid-pic .auction-item-pic{
+	max-width:90%;
 }
 
 .cart-item-number{
@@ -1830,4 +1834,8 @@ text-align:left;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
+}
+
+.checkout-page #pages_maincontent #showcheckout .txtquantity{
+	max-width:10%;
 }
